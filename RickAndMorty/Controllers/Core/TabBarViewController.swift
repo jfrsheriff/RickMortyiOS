@@ -11,7 +11,6 @@ final class TabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureVcs()
     }
     
@@ -39,7 +38,7 @@ final class TabBarViewController: UITabBarController {
         self.setViewControllers(
             [n1,n2,n3,n4],
             animated: true)
-        
+
     }
     
 }

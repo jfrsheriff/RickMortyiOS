@@ -16,8 +16,9 @@ final class Request{
     private let pathComponents : [String]
     private let queryParams : [URLQueryItem]
     
+    public let httpMethod = "GET"
+    
     public var urlString : String {
-        
         var urlStr = Constants.baseUrl
         urlStr += ("/" + endPoint.rawValue)
         
@@ -42,6 +43,13 @@ final class Request{
         URL(string: urlString)
     }
     
+    public var urlRequest : URLRequest?{
+        guard let url = url else{return nil}
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        return request
+    }
+    
     public init(
         endPoint : EndPoint,
         pathComponents: [String] = [],
@@ -52,4 +60,11 @@ final class Request{
         self.queryParams = queryParams
     }
     
+}
+
+
+extension Request{
+    static let listCharacterReq = Request(endPoint: .character)
+    static let listLocationReq = Request(endPoint: .location)
+    static let listEpisodeReq = Request(endPoint: .episode)
 }
