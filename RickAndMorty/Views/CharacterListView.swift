@@ -27,22 +27,26 @@ final class CharacterListView : UIView {
     private let collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 40, right: 10)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isHidden = true
         collectionView.alpha = 0
         collectionView.bounces = true
-        collectionView.register(RMCollectionViewCell.self, forCellWithReuseIdentifier:RMCollectionViewCell.cellID)
-        
+        collectionView.register(RMCollectionViewCell.self,
+                                forCellWithReuseIdentifier:RMCollectionViewCell.cellID)
+        collectionView.register(FooterLoadingReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: FooterLoadingReusableView.reusabelID)
         return collectionView
     }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         addSubviews(loader,collectionView)
         
         loader.startAnimating()
@@ -58,6 +62,7 @@ final class CharacterListView : UIView {
     }
     
     func addConstraints(){
+        
         NSLayoutConstraint.activate([
             loader.centerXAnchor.constraint(equalTo: centerXAnchor),
             loader.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -79,6 +84,7 @@ final class CharacterListView : UIView {
 
 
 extension CharacterListView : CharacterListViewModelDelegate{
+    
     func initialCharacterLoaded() {
         loader.stopAnimating()
         collectionView.isHidden = false
@@ -91,6 +97,12 @@ extension CharacterListView : CharacterListViewModelDelegate{
     
     func itemSelected(character: RMCharacter.RMCharacterResult) {
         delegate?.itemSelected(character: character)
+    }
+    
+    func additionalCharactersLoaded(with newIndexPaths: [IndexPath]) {
+        collectionView.performBatchUpdates {
+            collectionView.insertItems(at: newIndexPaths)
+        }
     }
     
 }

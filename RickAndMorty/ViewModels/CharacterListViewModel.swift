@@ -9,6 +9,8 @@ import UIKit
 
 protocol CharacterListViewModelDelegate : AnyObject{
     func initialCharacterLoaded()
+    func additionalCharactersLoaded(with newIndexPaths: [IndexPath])
+    
     func itemSelected(character : RMCharacter.RMCharacterResult)
 }
 
@@ -16,18 +18,29 @@ final class CharacterListViewModel : NSObject {
     
     public weak var delegate:CharacterListViewModelDelegate?
     
+    private var isLoadingMoreCharacters = false
+    
+    public var shouldShowLoadMoreIndicator : Bool {
+        return info?.next != nil
+    }
+    
+    private var curNoOfItems = 0
+    
     private var characters : [RMCharacter.RMCharacterResult] = [] {
         didSet{
-            characters.forEach { character in
+            for index in curNoOfItems..<characters.count{
+                let character = characters[index]
                 let vm = RMCollectionViewCellViewModel(
                     characterName: character.name,
                     characterStatus: character.status,
                     characterImgUrl: URL(string:character.image) )
                 viewModel.append(vm)
             }
+            curNoOfItems = characters.count
         }
     }
     
+    private var info : RMCharacter.RMCharacterInfo?
     
     private var viewModel : [RMCollectionViewCellViewModel] = []
     
@@ -39,19 +52,52 @@ final class CharacterListViewModel : NSObject {
             case .success(let model):
                 let res = model.results
                 self?.characters = res
+                self?.info = model.info
                 DispatchQueue.main.async {
                     self?.delegate?.initialCharacterLoaded()
                 }
-                print(model)
             case .failure(let failure):
                 print(failure)
+            }
+        }
+    }
+    
+    
+    func fetchAdditionalCharacters(url : URL){
+        guard !isLoadingMoreCharacters else{return}
+        isLoadingMoreCharacters = true
+        guard let req = Request(with: url) else {
+            isLoadingMoreCharacters = false
+            return
+        }
+        
+        Service.shared.execute(req, expection: RMCharacter.self) { [weak self] result in
+            guard let self = self else {return}
+            switch result {
+            case .success(let model):
+                let moreResults = model.results
+                self.info = model.info
+                
+                let total = self.characters.count + moreResults.count
+                let indexPaths = Array(self.characters.count ..< total).map {IndexPath(row: $0, section: 0)}
+                
+                self.characters.append(contentsOf: moreResults)
+                DispatchQueue.main.async {
+                    self.delegate?.additionalCharactersLoaded(with: indexPaths)
+                    self.isLoadingMoreCharacters = false
+                }
+                
+            case .failure(let failure):
+                self.isLoadingMoreCharacters = false
             }
         }
     }
 }
 
 
+
 extension CharacterListViewModel : UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.count
     }
@@ -73,4 +119,53 @@ extension CharacterListViewModel : UICollectionViewDataSource, UICollectionViewD
         delegate?.itemSelected(character: characters[indexPath.row])
     }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionFooter , shouldShowLoadMoreIndicator else{
+            fatalError("UnSupported")
+        }
+        
+        guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter,
+                                                                           withReuseIdentifier: FooterLoadingReusableView.reusabelID,
+                                                                           for: indexPath) as? FooterLoadingReusableView else {
+            fatalError("UnSupported")
+        }
+        footer.startAnimating()
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard shouldShowLoadMoreIndicator else {
+            return CGSize.zero
+        }
+        
+        return CGSize(width: collectionView.frame.size.width, height: 100)
+    }
+}
+
+
+
+extension CharacterListViewModel : UIScrollViewDelegate{
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard shouldShowLoadMoreIndicator ,
+              !isLoadingMoreCharacters,
+              let urlStr = info?.next,
+              let url = URL(string:urlStr),
+              !viewModel.isEmpty else {
+            return
+        }
+        
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { [weak self] timer in
+            let yOffset = scrollView.contentOffset.y
+            let height = scrollView.frame.size.height
+            let contentHeight = scrollView.contentSize.height
+            
+            if yOffset >= (contentHeight -  height - 120) {
+                self?.fetchAdditionalCharacters( url : url)
+            }
+            timer.invalidate()
+        }
+    }
 }

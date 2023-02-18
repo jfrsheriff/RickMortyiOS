@@ -10,6 +10,8 @@
 		12468960298573CC003F12F2 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1246895F298573CC003F12F2 /* Service.swift */; };
 		12468962298573D4003F12F2 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12468961298573D4003F12F2 /* EndPoint.swift */; };
 		12468964298573E1003F12F2 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12468963298573E1003F12F2 /* Request.swift */; };
+		12639EA0299FEA2200575D99 /* FooterLoadingReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12639E9F299FEA2200575D99 /* FooterLoadingReusableView.swift */; };
+		12639EA429A0ED8700575D99 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12639EA329A0ED8700575D99 /* ImageLoader.swift */; };
 		129E60B92990EC28004EEB06 /* CharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129E60B82990EC28004EEB06 /* CharacterListViewModel.swift */; };
 		129E60BB2990EC69004EEB06 /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129E60BA2990EC69004EEB06 /* CharacterListView.swift */; };
 		129E60BF2990F36D004EEB06 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129E60BE2990F36D004EEB06 /* Extensions.swift */; };
@@ -55,6 +57,8 @@
 		1246895F298573CC003F12F2 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		12468961298573D4003F12F2 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		12468963298573E1003F12F2 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		12639E9F299FEA2200575D99 /* FooterLoadingReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterLoadingReusableView.swift; sourceTree = "<group>"; };
+		12639EA329A0ED8700575D99 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		129E60B82990EC28004EEB06 /* CharacterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListViewModel.swift; sourceTree = "<group>"; };
 		129E60BA2990EC69004EEB06 /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		129E60BE2990F36D004EEB06 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 			children = (
 				129E60BA2990EC69004EEB06 /* CharacterListView.swift */,
 				12EC1C2529910C3D003CC812 /* RMCollectionViewCell.swift */,
+				12639E9F299FEA2200575D99 /* FooterLoadingReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 		12D863B2298D6B4500FAF629 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				12639EA329A0ED8700575D99 /* ImageLoader.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -394,12 +400,14 @@
 				12D863B4298D6BBA00FAF629 /* RMLocation.swift in Sources */,
 				12468962298573D4003F12F2 /* EndPoint.swift in Sources */,
 				12D863B8298D6BCA00FAF629 /* RMEpisode.swift in Sources */,
+				12639EA0299FEA2200575D99 /* FooterLoadingReusableView.swift in Sources */,
 				12ABDC1529851ED9001A3CB7 /* CharacterViewController.swift in Sources */,
 				12ABDBDD29851C41001A3CB7 /* AppDelegate.swift in Sources */,
 				12ABDBDF29851C41001A3CB7 /* SceneDelegate.swift in Sources */,
 				129E60B92990EC28004EEB06 /* CharacterListViewModel.swift in Sources */,
 				129E60BF2990F36D004EEB06 /* Extensions.swift in Sources */,
 				12468964298573E1003F12F2 /* Request.swift in Sources */,
+				12639EA429A0ED8700575D99 /* ImageLoader.swift in Sources */,
 				12EC1C2629910C3D003CC812 /* RMCollectionViewCell.swift in Sources */,
 				129E60BB2990EC69004EEB06 /* CharacterListView.swift in Sources */,
 				12EC1C2D29917468003CC812 /* CharacterDetailViewModel.swift in Sources */,

@@ -24,26 +24,10 @@ struct RMCollectionViewCellViewModel {
     }
     
     public func fetchImage(completion : @escaping (Result<Data,Error>) -> Void) {
-        
         guard let url = characterImgUrl else {
             completion(.failure(URLError(.badURL)))
             return
         }
-        
-        let req = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: req) { data, _, error in
-            guard let data = data else{
-                completion(.failure(URLError(.badServerResponse)))
-                return
-            }
-            
-            if let error = error{
-                completion(.failure(error))
-            }
-            completion(.success(data))
-        }
-        
-        task.resume()
+        ImageManager.shared.fetchImage(url: url, completion: completion)
     }
 }

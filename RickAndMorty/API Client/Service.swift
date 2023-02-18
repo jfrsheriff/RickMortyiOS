@@ -33,7 +33,6 @@ final class Service{
                 return
             }
             
-            
             do{
                 let model = try JSONDecoder().decode(type, from: data)
                 print(model)

@@ -24,6 +24,7 @@ class CharacterDetailViewController: UIViewController {
         super.viewDidLoad()
 
         title = viewModel.title
+        view.backgroundColor = .systemBackground
         // Do any additional setup after loading the view.
     }
 

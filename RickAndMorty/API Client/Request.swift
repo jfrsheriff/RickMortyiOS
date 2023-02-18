@@ -60,6 +60,38 @@ final class Request{
         self.queryParams = queryParams
     }
     
+    
+    convenience init? (with url : URL){
+        let urlStr = url.absoluteString
+        guard urlStr.contains(Constants.baseUrl) else{
+            return nil
+        }
+        let path = urlStr.replacingOccurrences(of: Constants.baseUrl + "/" , with: "")
+        
+        if path.contains("/"){
+            let components = path.components(separatedBy: "/")
+            if !components.isEmpty, let endPoint = EndPoint(rawValue: components[0]) {
+                self.init(endPoint: endPoint)
+                return
+            }
+        }else if path.contains("?"){
+            let components = path.components(separatedBy: "?")
+            if components.count >= 2 {
+                if let endPoint = EndPoint(rawValue: components[0]) {
+                    
+                    let queryItems : [URLQueryItem] = components[1].components(separatedBy: "&").compactMap{
+                        let query = $0.components(separatedBy: "=")
+                        if query.count != 2 {return nil}
+                        return URLQueryItem(name: query[0], value: query[1])
+                    }
+                    
+                    self.init(endPoint: endPoint, queryParams: queryItems)
+                    return
+                }
+            }
+        }
+        return nil
+    }
 }
 
 

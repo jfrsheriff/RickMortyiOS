@@ -35,6 +35,7 @@ final class CharacterViewController: UIViewController {
 extension CharacterViewController : CharacterListViewDelegate{
     func itemSelected(character: RMCharacter.RMCharacterResult) {
         let vm = CharacterDetailViewModel(character: character)
+    
         let detailVC = CharacterDetailViewController(viewModel: vm)
         detailVC.navigationItem.largeTitleDisplayMode = .never
         navigationController?.pushViewController(detailVC, animated: true)
