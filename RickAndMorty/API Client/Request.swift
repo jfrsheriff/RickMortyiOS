@@ -71,7 +71,11 @@ final class Request{
         if path.contains("/"){
             let components = path.components(separatedBy: "/")
             if !components.isEmpty, let endPoint = EndPoint(rawValue: components[0]) {
-                self.init(endPoint: endPoint)
+                var pathComponents : [String] = []
+                if components.count > 1 {
+                    pathComponents = Array(components[1...])
+                }
+                self.init(endPoint: endPoint,pathComponents: pathComponents)
                 return
             }
         }else if path.contains("?"){
