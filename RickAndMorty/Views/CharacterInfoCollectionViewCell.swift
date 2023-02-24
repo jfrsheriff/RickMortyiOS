@@ -13,7 +13,6 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     private let titleLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Title"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 20, weight: .medium)
         return label
@@ -23,13 +22,13 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     private let valueLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Value"
-        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.numberOfLines = 2
+        label.font = .systemFont(ofSize: 22, weight: .light)
         return label
     }()
     
     private let iconImgView : UIImageView = {
-        let imgView = UIImageView() 
+        let imgView = UIImageView()
         imgView.translatesAutoresizingMaskIntoConstraints = false
         imgView.image = UIImage(systemName: "globe.americas")
         imgView.contentMode = .scaleAspectFit
@@ -61,6 +60,8 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
         iconImgView.image = nil
         titleLabel.text = nil
         valueLabel.text = nil
+        iconImgView.tintColor = .label
+        titleLabel.textColor = .label
     }
     
     private func setUpConstraints(){
@@ -88,15 +89,19 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
             
             valueLabel.leadingAnchor.constraint(equalTo: iconImgView.trailingAnchor,constant: 10),
             valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -10),
-            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 35),
-            valueLabel.heightAnchor.constraint(equalToConstant: 30)
-            
+            valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: containerView.topAnchor)
+
         ])
         
         
     }
     
     public func configure(_ viewModel : CharacterInfoCollectionViewCellViewModel){
-        
+        titleLabel.text = viewModel.title
+        valueLabel.text = viewModel.displayValue
+        iconImgView.image = viewModel.iconImage
+        iconImgView.tintColor = viewModel.tintColor
+        titleLabel.textColor = viewModel.tintColor
     }
 }

@@ -20,8 +20,7 @@ final class Service{
     
     func execute<T:Codable>( _ request : Request, expection type : T.Type, completion: @escaping (Result<T,Error>) -> Void){
         guard let urlRequest = request.urlRequest else {
-            completion(.failure(ServiceError.failedToCreateRequest))
-            return
+             return
         }
         let task = URLSession.shared.dataTask(with: urlRequest) { data, _ , error in
             guard let data = data else{

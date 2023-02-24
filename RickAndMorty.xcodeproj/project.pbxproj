@@ -34,6 +34,7 @@
 		12ABDC1329851EBB001A3CB7 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ABDC1229851EBB001A3CB7 /* LocationsViewController.swift */; };
 		12ABDC1529851ED9001A3CB7 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ABDC1429851ED9001A3CB7 /* CharacterViewController.swift */; };
 		12ABDC1729851EE9001A3CB7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12ABDC1629851EE9001A3CB7 /* SettingsViewController.swift */; };
+		12B61FE529A9284000914648 /* EpisodeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B61FE429A9284000914648 /* EpisodeDetailsViewController.swift */; };
 		12D863B4298D6BBA00FAF629 /* RMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D863B3298D6BBA00FAF629 /* RMLocation.swift */; };
 		12D863B6298D6BC200FAF629 /* RMCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D863B5298D6BC200FAF629 /* RMCharacter.swift */; };
 		12D863B8298D6BCA00FAF629 /* RMEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D863B7298D6BCA00FAF629 /* RMEpisode.swift */; };
@@ -92,6 +93,7 @@
 		12ABDC1229851EBB001A3CB7 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		12ABDC1429851ED9001A3CB7 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
 		12ABDC1629851EE9001A3CB7 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		12B61FE429A9284000914648 /* EpisodeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsViewController.swift; sourceTree = "<group>"; };
 		12D863B3298D6BBA00FAF629 /* RMLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocation.swift; sourceTree = "<group>"; };
 		12D863B5298D6BC200FAF629 /* RMCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacter.swift; sourceTree = "<group>"; };
 		12D863B7298D6BCA00FAF629 /* RMEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisode.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				12EC1C2A2991743B003CC812 /* CharacterDetailViewController.swift */,
+				12B61FE429A9284000914648 /* EpisodeDetailsViewController.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				12639EA429A0ED8700575D99 /* ImageLoader.swift in Sources */,
 				12EC1C2629910C3D003CC812 /* RMCollectionViewCell.swift in Sources */,
 				129E60BB2990EC69004EEB06 /* CharacterListView.swift in Sources */,
+				12B61FE529A9284000914648 /* EpisodeDetailsViewController.swift in Sources */,
 				12EC1C2D29917468003CC812 /* CharacterDetailViewModel.swift in Sources */,
 				12639EA629A1158A00575D99 /* CharacterDetailsView.swift in Sources */,
 				12ABDC1329851EBB001A3CB7 /* LocationsViewController.swift in Sources */,

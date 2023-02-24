@@ -115,7 +115,7 @@ final class CharacterDetailsView: UIView {
                                                         NSCollectionLayoutSize(
                                                             widthDimension: .fractionalWidth(1),
                                                             heightDimension: .absolute(150) ),
-                                                     subitems: [item,item,item])
+                                                     subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
