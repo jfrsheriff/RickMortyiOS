@@ -30,6 +30,15 @@ class CharacterDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         // Do any additional setup after loading the view.
         configure()
+        addShareButton()
+    }
+    
+    private func addShareButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareAction))
+    }
+    
+    @objc private func shareAction(){
+        
     }
     
     private func configure(){

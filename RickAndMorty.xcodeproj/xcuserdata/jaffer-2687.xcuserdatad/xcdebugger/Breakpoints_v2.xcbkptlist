@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AE2B4CE8-D756-4E1D-A613-13C88E139707"
+            uuid = "294A2CE1-D436-4533-B454-59E9FB14D15F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RickAndMorty/Views/CharacterEpisodeCollectionViewCell.swift"
+            filePath = "RickAndMorty/Views/EpisodeDetailsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "configure(_:)"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "getLayoutFor(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A91225A-8577-4912-8617-900F7AA5F6B5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RickAndMorty/Views/EpisodeDetailsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "createCharacterLayout()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

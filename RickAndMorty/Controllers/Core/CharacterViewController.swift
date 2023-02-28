@@ -17,9 +17,10 @@ final class CharacterViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .automatic
         setUpViews()
+        addSearchButton()
     }
     
-    func setUpViews(){
+    private func setUpViews(){
         characterListView.delegate = self
         view.addSubview(characterListView)
         
@@ -30,6 +31,17 @@ final class CharacterViewController: UIViewController {
             characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    private func addSearchButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchAction))
+    }
+    
+    @objc private func searchAction(){
+        let searchVC = SearchViewController(config: .init(type: .character))
+        searchVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
 }
 
 extension CharacterViewController : CharacterListViewDelegate{

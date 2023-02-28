@@ -30,7 +30,7 @@ final class CharacterDetailViewModel{
         case episodes(viewModels : [CharacterEpisodeCollectionViewCellViewModel])
     }
     
-    public var sections : [SectionType] = []
+    public var         sections : [SectionType] = []
     
     init(character: RMCharacter.RMCharacterResult) {
         self.character = character

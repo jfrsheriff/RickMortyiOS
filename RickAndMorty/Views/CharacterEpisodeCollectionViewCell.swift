@@ -34,11 +34,8 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
-        contentView.layer.cornerRadius = 8
-        contentView.layer.borderColor = UIColor.systemBlue.cgColor
-        contentView.layer.borderWidth = 2
+        setUpLayer()
         contentView.addSubviews(seasonLabel,nameLabel,airDateLabel)
-        
         setUpConstraints()
     }
     
@@ -46,12 +43,17 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
         fatalError("Not Supported")
     }
     
+    private func setUpLayer(){
+        contentView.layer.cornerRadius = 8
+        contentView.layer.borderColor = UIColor.systemMint.cgColor
+        contentView.layer.borderWidth = 2
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         seasonLabel.text = nil
         nameLabel.text = nil
-        airDateLabel.text = nil
-    }
+        airDateLabel.text = nil     }
     
     private func setUpConstraints(){
         NSLayoutConstraint.activate([
@@ -65,11 +67,12 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             nameLabel.topAnchor.constraint(equalTo: seasonLabel.bottomAnchor, constant: 5),
             nameLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
-            
+             
             airDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             airDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             airDateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            airDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
+//            airDateLabel.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.3),
+            airDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
          
         ])
     }
@@ -82,6 +85,7 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
             self?.airDateLabel.text = "Aired On : " + episode.air_date
         }
         viewModel.fetch()
+        contentView.layer.borderColor = viewModel.borderColor.cgColor
     }
     
 }

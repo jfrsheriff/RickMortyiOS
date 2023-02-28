@@ -5,7 +5,7 @@
 //  Created by Jaffer Sheriff U on 21/02/23.
 //
 
-import Foundation
+import UIKit
 
 protocol EpisodeDataRenderer{
     var episode: String {get}
@@ -19,6 +19,8 @@ final class CharacterEpisodeCollectionViewCellViewModel{
     private var isFetched : Bool = false
     private var dataBlock : ((EpisodeDataRenderer) -> ())? = nil
     
+    public let borderColor : UIColor
+    
     private var episode : RMEpisode?{
         didSet{
             guard let model = episode else {return}
@@ -26,8 +28,9 @@ final class CharacterEpisodeCollectionViewCellViewModel{
         }
     }
     
-    init(withUrl url : URL?){
+    init(withUrl url : URL?, borderColor : UIColor =  UIColor.systemRed){
         self.episodeURL = url
+        self.borderColor = borderColor
     }
     
     public func register(_ block : @escaping (EpisodeDataRenderer) -> () ){

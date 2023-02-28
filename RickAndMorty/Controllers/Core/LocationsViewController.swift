@@ -14,6 +14,14 @@ final class LocationsViewController: UIViewController {
         title = "Locations"
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .automatic
+        addSearchButton()
     }
-
+    
+    private func addSearchButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchAction))
+    }
+    
+    @objc private func searchAction(){
+        
+    }
 }
